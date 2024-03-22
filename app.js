@@ -1,4 +1,4 @@
-``
+let bank = 100
 
 
 const heroes = [
@@ -27,22 +27,67 @@ const boss = {
 
 function damageBoss() {
 	let teamDamage = 0
-	// let bossHealth = boss.health
 
 	heroes.forEach(hero => {
 		teamDamage += hero.damage
 	})
 
 	if (teamDamage >= boss.health) {
-		boss.health = 0
+		// boss.health = 0
+		levelUpBoss()
+		collectReward()
+
 	} else if (teamDamage < boss.health) {
 		boss.health -= teamDamage
 	}
 	console.log('Damage to Boss:', teamDamage)
 	console.log('Boss Health:', boss.health)
-
-
 }
+
+function collectReward() {
+	bank += boss.level * 20
+
+	document.getElementById('bank').innerHTML = `<b>Credits: '${bank}'</b>`
+}
+
+function levelUpBoss() {
+	boss.maxHealth = boss.maxHealth * 1.1
+	boss.health = boss.maxHealth
+	boss.level += 1
+	boss.damage = boss.damage * (.5 * boss.level)
+	console.log(boss)
+}
+
+//let hungerInterval = setInterval(damageHeroes, 3000)
+
+function damageHeroes() {
+
+	heroes.forEach(hero => {
+		hero.health -= boss.damage
+		if (hero.health < 0) hero.health = 0
+		console.log('Hero Health:', hero.name, hero.health)
+		console.log('Damage to Heroes:', boss.damage)
+	})
+}
+
+
+
+
+// 🪦
+// function damageHeroes() {
+
+// 	heroes.forEach(hero => {
+// 		let heroHealth = hero.health -= boss.damage
+// 		if (boss.damage >= heroHealth) {
+// 			heroHealth = 0
+// 		} else if (boss.damage < heroHealth) {
+// 			heroHealth -= boss.damage
+
+// 		}
+// 		console.log('Hero Health:', heroHealth)
+// 		console.log('Damage to Heroes:', boss.damage)
+// 	})
+// }
 
 // function damageHeroes() {
 // 	// let eachHero = heroes.forEach(hero => {
@@ -84,29 +129,3 @@ function damageBoss() {
 // 	console.log('Damage to Heroes:', boss.damage)
 // }
 
-function damageHeroes() {
-
-	heroes.forEach(hero => {
-		hero.health -= boss.damage
-		if (hero.health < 0) hero.health = 0
-		console.log('Hero Health:', hero.name, hero.health)
-		console.log('Damage to Heroes:', boss.damage)
-	})
-
-}
-
-
-// function damageHeroes() {
-
-// 	heroes.forEach(hero => {
-// 		let heroHealth = hero.health -= boss.damage
-// 		if (boss.damage >= heroHealth) {
-// 			heroHealth = 0
-// 		} else if (boss.damage < heroHealth) {
-// 			heroHealth -= boss.damage
-
-// 		}
-// 		console.log('Hero Health:', heroHealth)
-// 		console.log('Damage to Heroes:', boss.damage)
-// 	})
-// }

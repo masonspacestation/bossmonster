@@ -4,22 +4,55 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
 	<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'
 		integrity='sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD' crossorigin='anonymous'>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
-	<title>Boss Monster</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="app.js" defer></script>
-
-
 	<script id="debug-script" src="https://cdn.jsdelivr.net/gh/MickShannahan/style-debug@latest/debug.min.js"
 		defer></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="debug">
+<body>
+	<header class="bg-dark text-center fw-bold p-2">
+		<h1 class="text-light ">Header</h1>
+	</header>
+
 	<main class="container-fluid">
-		<div class="row">
-			<div id="hero1" class="hero col-2 me-5">
+		<section id="console" class="row bg-light">
+			<div class="col-3">
+				<h5 id="victories">Victories</h5>
+				<h5 id="bank">bank</h5>
+			</div>
+			<div class="col-3">
+				<h5 id="heroHealth">1</h5>
+				<h5 id="bossHealth">2</h5>
+			</div>
+		</section>
+		<section class="row justify-content-around m-5">
+			<div id="hero1" class="col-3 hero">
+				<div class="row">
+					<img class="heroImg">Image</img>
+				</div>
+				<div id="heroStats" class="row">
+					<h5 class="heroName">Name</h5>
+					<h5 class="heroHealth">Health</h5>
+				</div>
+			</div>
+			<div class="col-4">
+				<div id="bossMain" class="justify-content-center">
+
+					<div class="row">
+						<img src="assets/boss.png" class="bossImg col" onclick="damageBoss()"></img>
+					</div>
+					<div id="bossStats" class="row">
+						<h5 class="bossName">Name</h5>
+						<h5 class="bossHealth">Health</h5>
+					</div>
+				</div>
+			</div>
+
+			<div id="hero2" class="col-3 hero">
 				<div class="row">
 					<img class="heroImg">Image</img>
 				</div>
@@ -29,34 +62,17 @@
 				</div>
 			</div>
 
-			<div id="hero2" class="hero col-2">
-				<div class="row">
-					<img class="heroImg">Image</img>
-				</div>
-				<div id="heroStats" class="row">
-					<h5 class="heroName">Name</h5>
-					<h5 class="heroHealth">Health</h5>
-				</div>
-			</div>
-		</div>
+
+
+
+
+		</section>
+
 
 		<button class="btn rounded rounded-pill btm-primary" onclick="damageHeroes()">Boss Attacks</button>
 
-		<div class="row justify-content-center my-5">
-			<div id="mainBoss" class="bossBox col-8">
-				<div class="row">
-					<img src="assets/boss.png" class="bossImg col" onclick="damageBoss()"></img>
-				</div>
-				<div id="bossStats" class="row">
-					<h5 class="bossName">Name</h5>
-					<h5 class="bossHealth">Health</h5>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="row"></div>
 	</main>
 </body>
+<script src="app.js"></script>
 
 </html>
