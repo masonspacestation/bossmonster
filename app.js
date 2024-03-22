@@ -1,16 +1,17 @@
 let bank = 100
-
+let victories = 0
+updateStats()
 
 const heroes = [
 	{
-		name: 'Slate Slabrock',
-		type: 'dwarf',
+		name: 'Jet Spacerock',
+		type: 'astro',
 		damage: 5,
 		health: 100
 	},
 	{
-		name: 'Flint Ironstag',
-		type: 'elf',
+		name: 'Kosmo Ironstag',
+		type: 'astro',
 		damage: 10,
 		health: 50
 	}
@@ -23,8 +24,40 @@ const boss = {
 	level: 1
 }
 
+// let hungerInterval = setInterval(damageHeroes, 3000)
+
+// SECTION damageHeroes, healHero, collectReward
+function damageHeroes() {
+
+	heroes.forEach(hero => {
+		hero.health -= boss.damage
+		if (hero.health < 0) hero.health = 0
+		console.log('Hero Health:', hero.name, hero.health)
+		console.log('Damage to Heroes:', boss.damage)
+		drawHeroStats(hero.health)
+	})
+}
+
+function healHero(heroName) {
+	// debugger
+	let heroToHeal = heroes.find(hero => hero.name == heroName)
+	console.log("heal: ", heroName)
+	if (bank > 25) {
+		bank -= 25,
+			heroToHeal.health += 50
+	}
+	console.log(heroToHeal)
+	updateStats(heroToHeal)
+}
+
+function collectReward() {
+	bank += boss.level * 20
+	drawBank()
+	drawBossHealth(boss.health)
+}
 
 
+// SECTION damageBoss, levelUpBoss
 function damageBoss() {
 	let teamDamage = 0
 
@@ -33,7 +66,7 @@ function damageBoss() {
 	})
 
 	if (teamDamage >= boss.health) {
-		// boss.health = 0
+		victories + 1
 		levelUpBoss()
 		collectReward()
 
@@ -44,12 +77,6 @@ function damageBoss() {
 	console.log('Boss Health:', boss.health)
 }
 
-function collectReward() {
-	bank += boss.level * 20
-
-	document.getElementById('bank').innerHTML = `<b>Credits: '${bank}'</b>`
-}
-
 function levelUpBoss() {
 	boss.maxHealth = boss.maxHealth * 1.1
 	boss.health = boss.maxHealth
@@ -58,20 +85,37 @@ function levelUpBoss() {
 	console.log(boss)
 }
 
-//let hungerInterval = setInterval(damageHeroes, 3000)
+// SECTION drawheroHealth, drawBossHealth, drawBank, drawStats
 
-function damageHeroes() {
+// drawStats will incorporate drawHeroHealth, drawBossHealth, victories, credits, teamHealth
 
-	heroes.forEach(hero => {
-		hero.health -= boss.damage
-		if (hero.health < 0) hero.health = 0
-		console.log('Hero Health:', hero.name, hero.health)
-		console.log('Damage to Heroes:', boss.damage)
-	})
+function updateStats(value) {
+
+	drawVictories()
+	drawBank()
+	drawHeroStats(value)
+	drawBossHealth(value)
 }
 
+function drawHeroStats(heroHealth) {
+	document.getElementById('heroTeamHealth').innerHTML = `<b>❤️: ${heroHealth}</b>`
+}
 
+function drawBossHealth(bossHealth) {
+	document.getElementById('bossHealth').innerHTML = `<b>🖤: ${bossHealth}</b>`
+}
 
+function drawBank() {
+	document.getElementById('bank').innerHTML = `<b>Credits: ${bank}</b>`
+}
+
+function drawVictories() {
+	document.getElementById('victories').innerHTML = `<b>Victories: ${victories}</b>`
+}
+
+// switch statement to change boss image
+
+updateStats()
 
 // 🪦
 // function damageHeroes() {

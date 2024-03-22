@@ -18,6 +18,7 @@
 		<h1 class="text-light ">Header</h1>
 	</header>
 
+	<!-- SECTION console -->
 	<main class="container-fluid">
 		<section id="console" class="row bg-light">
 			<div class="col-3">
@@ -25,36 +26,42 @@
 				<h5 id="bank">bank</h5>
 			</div>
 			<div class="col-3">
-				<h5 id="heroHealth">1</h5>
+				<h5 id="heroTeamHealth">1</h5>
 				<h5 id="bossHealth">2</h5>
 			</div>
 		</section>
-		<section class="row justify-content-around m-5">
-			<div id="hero1" class="col-3 hero">
-				<div class="row">
-					<img class="heroImg">Image</img>
+
+		<!-- SECTION play area -->
+		<section class="row justify-content-around align-items-center m-5">
+			<div id="hero1" class="col-4 hero">
+				<div class="card bg-dark rounded-2 shadow p-4">
+					<div class="row">
+						<img src="assets/hero1.png" class="heroImg"></img>
+					</div>
+					<h5 id="heroStats" class="row">
 				</div>
-				<div id="heroStats" class="row">
-					<h5 class="heroName">Name</h5>
-					<h5 class="heroHealth">Health</h5>
-				</div>
+				<button class="btn btn-success" onclick="healHero('Slate Slabrock')">Heal</button>
 			</div>
+			</div>
+
+
 			<div class="col-4">
 				<div id="bossMain" class="justify-content-center">
 
 					<div class="row">
-						<img src="assets/boss.png" class="bossImg col" onclick="damageBoss()"></img>
+						<img id="bossImg" src="assets/boss01.png" class="col" onclick="damageBoss()"></img>
 					</div>
 					<div id="bossStats" class="row">
 						<h5 class="bossName">Name</h5>
 						<h5 class="bossHealth">Health</h5>
 					</div>
+					<button class="btn btn-success" onclick="healHero('Flint Ironstag')">Heal</button>
 				</div>
 			</div>
 
-			<div id="hero2" class="col-3 hero">
+			<div id="hero2" class="col-3 hero bg-dark">
 				<div class="row">
-					<img class="heroImg">Image</img>
+					<img src="assets/hero2.png" class="heroImg"></img>
 				</div>
 				<div id="heroStats" class="row">
 					<h5 class="heroName">Name</h5>
